@@ -71,16 +71,17 @@
 
 
   i18n.inputMethod = {
-   enable = true;
-   type = "fcitx5";
-   fcitx5.addons = [
-    # Mocz
-    pkgs.fcitx5-mozc
-    #GTK app
-    pkgs.fcitx5-gtk
-   ];
-   fcitx5.waylandFrontend = true;
- }; 
+    enable = true;
+    type = "fcitx5";
+    fcitx5.addons = [
+      # Mocz
+      pkgs.fcitx5-mozc
+      #GTK app
+      pkgs.fcitx5-gtk
+    ];
+    fcitx5.waylandFrontend = true;
+  }; 
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
@@ -105,12 +106,6 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -122,9 +117,7 @@
     description = "kosaka";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      vesktop
-      notion-app-enhanced
-      thonny
+      vesktop thonny brave notion
     ];
     shell = pkgs.fish;
   };
@@ -140,10 +133,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-   brave
-   notion
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
+    wget bsdtar
   ];
 
   fonts = {
@@ -181,6 +171,7 @@
       options = "--delete-older-than 7d";
     };
   };
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -206,6 +197,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.11"; # Did you read the comment?
 
+  system.stateVersion = "24.11"; # Did you read the comment?
 }
